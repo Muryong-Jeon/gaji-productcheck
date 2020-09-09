@@ -2,6 +2,8 @@ package GAJI;
 
 import javax.persistence.*;
 import org.springframework.beans.BeanUtils;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 @Entity
@@ -12,7 +14,7 @@ public class ProductCheck {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     private Long productId;
-    private String status;
+    private String checkFlag;
 
     @PostPersist
     public void onPostPersist(){
@@ -20,12 +22,12 @@ public class ProductCheck {
         BeanUtils.copyProperties(this, checkRequested);
         checkRequested.publishAfterCommit();
 
-
+    }
+    @PostUpdate
+    public void onPostUpdate(){
         CheckConfirmed checkConfirmed = new CheckConfirmed();
         BeanUtils.copyProperties(this, checkConfirmed);
         checkConfirmed.publishAfterCommit();
-
-
     }
 
 
@@ -43,15 +45,14 @@ public class ProductCheck {
     public void setProductId(Long productId) {
         this.productId = productId;
     }
-    public String getStatus() {
-        return status;
+
+    public String getCheckFlag() {
+        return checkFlag;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setCheckFlag(String checkFlag) {
+        this.checkFlag = checkFlag;
     }
-
-
 
 
 }

@@ -4,8 +4,7 @@ public class CheckRequested extends AbstractEvent {
 
     private Long id;
     private Long productId;
-    private String status;
-
+    private String checkFlag;
     public Long getId() {
         return id;
     }
@@ -20,11 +19,12 @@ public class CheckRequested extends AbstractEvent {
     public void setProductId(Long productId) {
         this.productId = productId;
     }
-    public String getStatus() {
-        return status;
+
+    public String getCheckFlag() {
+        return checkFlag;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setCheckFlag(String checkFlag) {
+        this.checkFlag = checkFlag;
     }
 }
