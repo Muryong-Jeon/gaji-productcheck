@@ -22,6 +22,11 @@ public class ProductCheck {
         BeanUtils.copyProperties(this, checkRequested);
         checkRequested.publishAfterCommit();
 
+        try {
+            Thread.currentThread().sleep((long) (400 + Math.random() * 220));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
     @PostUpdate
     public void onPostUpdate(){
